@@ -9,3 +9,4 @@ class ResUsers(models.Model):
     status = fields.Selection(
         [('available', 'Available'), ('busy', 'Busy'), ('offline', 'Offline')],
         required=True, string="Status")
+    sale_order_assigned_qty = fields.Integer(string="Sale Order Assigned Quantity")
