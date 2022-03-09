@@ -1,5 +1,35 @@
 <odoo>
     <data>
+        <!-- Form view -->
+        <record id="sale_assigner_view_form" model="ir.ui.view">
+            <field name="name">sale.assigner.view.form</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <form string="Sale Order">
+                    <field name="state" invisible="1"/>
+                    <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+
+                        <group>
+                            <field name="partner_id" string="Client"/>
+                            <field name="employee_id"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Sale Description">
+                                <field name="order_line"/>
+                                <group>
+                                    <field name="amount_total"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
         <!--Inherited views-->
         <record id="inherited_users_view_form" model="ir.ui.view">
             <field name="name">inherited.users.view.form</field>
