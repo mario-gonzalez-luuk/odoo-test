@@ -8,7 +8,7 @@
     'description': "",
     'author': "Luuk",
     'website': 'https://www.goluuk.com/',
-    'depends': ['base', 'sale', 'stock'],
+    'depends': ['base', 'sale', 'stock', 'hr'],
     'data': [
         # 'security/ir.model.access.csv',
         'views/sale_assigner_views.xml',
