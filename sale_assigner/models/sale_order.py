@@ -16,11 +16,12 @@ class SaleOrder(models.Model):
                 record.employee_id = self._assign_sale_order()
 
     def _assign_sale_order(self):
-        available_employees = self.env["res.users"].search([["state", "=", "available"]])
+        available_employees = self.env["res.users"].search([["status", "=", "available"]])
         if available_employees:
             return available_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
-        busy_employees = self.env["res.users"].search([["state", "=", "busy"]])
+        busy_employees = self.env["res.users"].search([["status", "=", "busy"]])
         if busy_employees:
             return busy_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
-        all_employees = self.env["res.users"].search([])
-        return all_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
+        offline_employees = self.env["res.users"].search(["status", "=", "offline"])
+        if offline_employees:
+            return offline_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
