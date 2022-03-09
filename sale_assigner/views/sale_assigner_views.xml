@@ -36,21 +36,28 @@
             <field name="name">sale.assigner.view.kanban</field>
             <field name="model">sale.order</field>
             <field name="arch" type="xml">
-                <kanban decoration-success="amount_total>100" create="false">
+                <kanban create="false">
                     <field name="state" invisible="1"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click">
-                                <b>
-                                    <field name="name"/>
-                                </b>
-                                Customer:
-                                <field name="partner_id"/>
-                                Total:
-                                <field name="amount_total"/>
-                                <div class="oe_kanban_global_click">
-                                    Employee:
-                                    <field name="employee_id"/>
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_record_top mb16">
+                                    <div class="o_kanban_record_headings mt4">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                    <strong>
+                                        <field name="amount_total" widget="monetary"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <field name="employee_id"/>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <field name="partner_id"/>
+                                    </div>
                                 </div>
                             </div>
                         </t>
@@ -92,14 +99,14 @@
         </record>
 
         <!--Inherited views-->
-        <record id="view_users_form" model="ir.ui.view">
-            <field name="name">view.users.form.inherit.sale.assigner</field>
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="base.view_users_form"/>
+        <record id="view_employee_form" model="ir.ui.view">
+            <field name="name">view.employee.form.inherit.sale.assigner</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
                 <!-- find field description and add the field
                      new_field after it -->
-                <xpath expr="//page[@name='references']" position="after">
+                <xpath expr="//page[@name='hr_settings']" position="after">
                     <page string="Sales">
                         <group>
                             <field name="status"/>

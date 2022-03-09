@@ -8,7 +8,7 @@ from odoo.tools.translate import _
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    employee_id = fields.Many2one(compute="_compute_employee_id", comodel_name="res.users", string="Employee",
+    employee_id = fields.Many2one(compute="_compute_employee_id", comodel_name="hr.employee", string="Employee",
                                   store=True)
 
     @api.depends("state")
@@ -18,13 +18,13 @@ class SaleOrder(models.Model):
                 record.employee_id = self._assign_sale_order()
 
     def _assign_sale_order(self):
-        available_employees = self.env["res.users"].search([["status", "=", "available"]])
+        available_employees = self.env["hr.employee"].search([["status", "=", "available"]])
         if available_employees:
             return available_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
-        busy_employees = self.env["res.users"].search([["status", "=", "busy"]])
+        busy_employees = self.env["hr.employee"].search([["status", "=", "busy"]])
         if busy_employees:
             return busy_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
-        all_employees = self.env["res.users"].search([["status", "!=", False]])
+        all_employees = self.env["hr.employee"].search([["status", "!=", False]])
         if all_employees:
             return all_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
         else:
