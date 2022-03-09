@@ -1,11 +1,71 @@
 <odoo>
     <data>
+        <!-- Menu -->
+        <menuitem id="sale_assigner_sale_order_menu" name="Sales Assigner" parent="sale.sale_menu_root" sequence="5">
+            <menuitem id="sale_assigner_sale_order_menu_action" action="sale_assigner_action"/>
+        </menuitem>
+
+        <!-- Action -->
+        <record id="sale_assigner_action" model="ir.actions.act_window">
+            <field name="name">Sales Assigner</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('sale_assigner_view_tree')}),
+        (0, 0, {'view_mode': 'form', 'view_id': ref('sale_assigner_view_form')}),
+        (0, 0, {'view_mode': 'kanban', 'view_id': ref('sale_assigner_view_kanban')})]"/>
+        </record>
+
+        <!-- Tree view -->
+        <record id="sale_assigner_view_tree" model="ir.ui.view">
+            <field name="name">sale.assigner.view.tree</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <tree string="Properties" decoration-success="amount_total>100" create="false">
+                    <field name="state" invisible="1"/>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="amount_total"/>
+                    <field name="employee_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Kanban view -->
+        <record id="sale_assigner_view_kanban" model="ir.ui.view">
+            <field name="name">sale.assigner.view.kanban</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <kanban decoration-success="amount_total>100" create="false">
+                    <field name="state" invisible="1"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <b>
+                                    <field name="name"/>
+                                </b>
+                                Customer:
+                                <field name="partner_id"/>
+                                Total:
+                                <field name="amount_total"/>
+                                <div class="oe_kanban_global_click">
+                                    Employee:
+                                    <field name="employee_id"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
         <!-- Form view -->
         <record id="sale_assigner_view_form" model="ir.ui.view">
             <field name="name">sale.assigner.view.form</field>
             <field name="model">sale.order</field>
+            <field name="priority" eval="17"/>
             <field name="arch" type="xml">
-                <form string="Sale Order">
+                <form string="Sale Order" create="false">
                     <field name="state" invisible="1"/>
                     <sheet>
                         <h1>
@@ -13,7 +73,7 @@
                         </h1>
 
                         <group>
-                            <field name="partner_id" string="Client"/>
+                            <field name="partner_id"/>
                             <field name="employee_id"/>
                             <field name="company_id" invisible="1"/>
                         </group>
@@ -30,6 +90,7 @@
                 </form>
             </field>
         </record>
+
         <!--Inherited views-->
         <record id="view_users_form" model="ir.ui.view">
             <field name="name">view.users.form.inherit.sale.assigner</field>
