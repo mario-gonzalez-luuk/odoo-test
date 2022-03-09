@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
+from odoo.tools.translate import _
 
 
 class SaleOrder(models.Model):
@@ -22,6 +24,8 @@ class SaleOrder(models.Model):
         busy_employees = self.env["res.users"].search([["status", "=", "busy"]])
         if busy_employees:
             return busy_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
-        offline_employees = self.env["res.users"].search(["status", "=", "offline"])
-        if offline_employees:
-            return offline_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
+        all_employees = self.env["res.users"].search([["status", "!=", False]])
+        if all_employees:
+            return all_employees.sorted(key=lambda employee: employee.sale_order_assigned_qty)[0].id
+        else:
+            raise ValidationError(_("No employees found to handle the sale order"))
