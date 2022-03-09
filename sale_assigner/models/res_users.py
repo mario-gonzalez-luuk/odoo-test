@@ -8,7 +8,7 @@ class ResUsers(models.Model):
 
     status = fields.Selection(
         [('available', 'Available'), ('busy', 'Busy'), ('offline', 'Offline')],
-        required=True, string="Employee Status", default="offline")
+        required=True, string="Employee Status")
     sale_order_ids = fields.One2many(comodel_name="sale.order", inverse_name="employee_id")
     sale_order_assigned_qty = fields.Integer(compute="_compute_sale_order_assigned_qty",
                                              string="Sale Order Assigned Quantity")
