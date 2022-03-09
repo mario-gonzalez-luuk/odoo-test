@@ -11,6 +11,7 @@
     'depends': ['base', 'sale'],
     'data': [
         # 'security/ir.model.access.csv',
+        'views/sale_assigner_views.xml',
     ],
     'demo': [
         # 'demo/demo.xml',
