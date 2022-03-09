@@ -40,7 +40,7 @@
                     <field name="state" invisible="1"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click oe_kanban_color_{{ (record.amount_total.raw_value > 100) ? '10' : '0'}}">
                                 <div class="o_kanban_record_top mb16">
                                     <div class="o_kanban_record_headings mt4">
                                         <strong class="o_kanban_record_title">
