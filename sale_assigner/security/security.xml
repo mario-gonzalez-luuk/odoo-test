@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_sales_employees" model="ir.module.category">
+        <field name="name">Sales Assignment Management</field>
+        <field name="description">Helps you manage your employees.</field>
+        <field name="sequence">16</field>
+    </record>
+
+    <!-- Group -->
+    <record id="sale_assigner_low_budget" model="res.groups">
+        <field name="name">Sales / Low Budget Team</field>
+        <field name="comment">The team have access to sales with total amount under 150</field>
+        <field name="category_id" ref="module_category_sales_employees"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>
