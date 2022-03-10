@@ -2,9 +2,9 @@
 {
     'name': 'Sales Assigner',
     'version': '0.1',
-    'category': 'Sales/User',
+    'category': 'Sales/Employees',
     'sequence': 15,
-    'summary': 'Link module for sale and user modules',
+    'summary': 'Link module for sale and hr_employee modules',
     'description': "",
     'author': "Luuk",
     'website': 'https://www.goluuk.com/',
@@ -12,6 +12,7 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/sale_assigner_views.xml',
+        'views/hr_employee_views.xml',
     ],
     'demo': [
         # 'demo/demo.xml',

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the employee form view to add a page containing the status and the sale orders qty assigned -->
+        <!-- This view is meant to be included in the employee form view -->
+        <record id="view_employee_form" model="ir.ui.view">
+            <field name="name">view.employee.form.inherit.sale.assigner</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='hr_settings']" position="after">
+                    <page string="Sales">
+                        <group>
+                            <field name="status"/>
+                            <field name="sale_order_assigned_qty" string="Sale Orders Assigned"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
