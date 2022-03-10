@@ -10,6 +10,13 @@ Modulo para extender la funcionalidad del modelo Sale Order donde automaticament
 
 ## Referencias
 
+Grupo al que se le da los correspondientes Access Rights y se le aplica las reglas sobre los records:
+
+```
+Category: Sales Assignment Management
+Group Name: Sales / Low Budget Team
+```
+
 El menu donde se podra ingresar a las vistas personalizadas del Sale Order:
 
 (Perspectiva del usuario)
