@@ -7,7 +7,8 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     status = fields.Selection(
-        [('available', 'Available'), ('busy', 'Busy'), ('offline', 'Offline')], string="Employee Status")
+        [('available', 'Available'), ('busy', 'Busy'), ('offline', 'Offline')], string="Employee Status",
+        default='offline')
     sale_order_ids = fields.One2many(comodel_name="sale.order", inverse_name="employee_id")
     sale_order_assigned_qty = fields.Integer(compute="_compute_sale_order_assigned_qty",
                                              string="Sale Orders Assigned")
