@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Category -->
     <record id="module_category_sales_employees" model="ir.module.category">
         <field name="name">Sales Assignment Management</field>
         <field name="description">Helps you manage your employees.</field>
@@ -13,4 +14,14 @@
         <field name="category_id" ref="module_category_sales_employees"/>
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
+
+    <!-- Rules -->
+    <data noupdate="0">
+        <record id="low_budget_team_rule" model="ir.rule">
+            <field name="name">Low Budget Team Rule</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="groups" eval="[(4, ref('sale_assigner_low_budget'))]"/>
+            <field name="domain_force">[('state','=','sale'),('amount_total','&lt;',150)]</field>
+        </record>
+    </data>
 </odoo>

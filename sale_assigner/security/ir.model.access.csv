@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sale_assigned_hr_employee,sale_assigned hr.employee,hr.model_hr_employee,sale_assigner_low_budget,1,1,1,1
 access_sale_assigned_order_employee,sale_assigned sale.order,sale.model_sale_order,sale_assigner_low_budget,1,1,1,1
+access_sale_assigned_order_line_employee,sale_assigned sale.order.line,sale.model_sale_order_line,sale_assigner_low_budget,1,1,1,1
+access_sale_assigned_stock_scrap,sale_assigned stock.scrap,stock.model_stock_scrap,sale_assigner_low_budget,1,1,1,1
+
+
