@@ -15,9 +15,6 @@
         'views/sale_assigner_views.xml',
         'views/hr_employee_views.xml',
     ],
-    'demo': [
-        # 'demo/demo.xml',
-    ],
     'installable': True,
     'application': True,
     'auto_install': False
