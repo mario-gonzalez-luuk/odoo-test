@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Menu -->
-        <menuitem id="sale_assigner_sale_order_menu" name="Sales Assigner" parent="sale.sale_menu_root" sequence="5">
-            <menuitem id="sale_assigner_sale_order_menu_action" action="sale_assigner_action"/>
-        </menuitem>
-
-        <!-- Action -->
-        <record id="sale_assigner_action" model="ir.actions.act_window">
-            <field name="name">Sales Assigner</field>
-            <field name="res_model">sale.order</field>
-            <field name="view_mode">tree,kanban,form</field>
-            <field name="view_ids" eval="[(5, 0, 0),
-        (0, 0, {'view_mode': 'tree', 'view_id': ref('sale_assigner_view_tree')}),
-        (0, 0, {'view_mode': 'form', 'view_id': ref('sale_assigner_view_form')}),
-        (0, 0, {'view_mode': 'kanban', 'view_id': ref('sale_assigner_view_kanban')})]"/>
-        </record>
-
         <!-- Tree view -->
         <record id="sale_assigner_view_tree" model="ir.ui.view">
             <field name="name">sale.assigner.view.tree</field>
@@ -107,5 +91,21 @@
                 </form>
             </field>
         </record>
+
+        <!-- Action -->
+        <record id="sale_assigner_action" model="ir.actions.act_window">
+            <field name="name">Sales Assigner</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('sale_assigner_view_tree')}),
+        (0, 0, {'view_mode': 'form', 'view_id': ref('sale_assigner_view_form')}),
+        (0, 0, {'view_mode': 'kanban', 'view_id': ref('sale_assigner_view_kanban')})]"/>
+        </record>
+
+        <!-- Menu -->
+        <menuitem id="sale_assigner_sale_order_menu" name="Sales Assigner" parent="sale.sale_menu_root" sequence="5">
+            <menuitem id="sale_assigner_sale_order_menu_action" action="sale_assigner_action"/>
+        </menuitem>
     </data>
 </odoo>
