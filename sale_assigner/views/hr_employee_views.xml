@@ -12,7 +12,7 @@
                     <page string="Sales">
                         <group>
                             <field name="status"/>
-                            <field name="sale_order_assigned_qty" string="Sale Orders Assigned"/>
+                            <field name="sale_order_assigned_qty"/>
                         </group>
                     </page>
                 </xpath>
